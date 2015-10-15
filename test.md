@@ -18,29 +18,33 @@ void reverse(char *s, char *e)
 		swap(*s++ , *e--);
 }
 
-bool CalcAllPermutation1(char* perm, int num){
-	int i;
 
-	//①找到排列中最后（最右）一个升序的首位位置i，x = ai
-	for (i = num - 2; (i >= 0) && (perm[i] >= perm[i + 1]); --i){
-		;
-	}
-	// 已经找到所有排列
-	if (i < 0){
-		return false;
-	}
+bool CalcAllPermutation4 (char *str, int num)
+{
+	if (!str) return false;
+	int i, k;
 
-	int k;
+	//①找到排列中最后（最右）一个升序的首位位置i，x = ai  ai < ai+1
+	for (i = num - 2; (i >= 0); i--)
+	{
+		if (str[i] < str[i+1]) {
+			break;
+		}		
+	}
+	if (i < 0) return false;
 	//②找到排列中第i位右边最后一个比ai 大的位置j，y = aj
-	for (k = num - 1; (k > i) && (perm[k] <= perm[i]); --k){
-		;
+	for (k = num - 1; (k > 0); k--)
+	{
+		if (str[k] > str[i])
+		{
+			break;
+		}
 	}
-
+	if (k < 0) return false;
 	//③交换x，y
-	swap(perm[i], perm[k]);
-	//④把第(i+ 1)位到最后的部分翻转
-	reverse(perm + i + 1, perm + num);
-	//cout << perm;
+	swap(str[i], str[k]);
+	//④把第(i + 1)位到最后的部分翻转
+	reverse(str + i + 1, str + num - 1);
 	return true;
 }
 
