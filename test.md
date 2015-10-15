@@ -9,6 +9,7 @@ y = 3
 翻转541
 得23145
 23145即为所求的21543的下一个排列。参考实现代码如下：
+···c++
 bool CalcAllPermutation(char* perm, int num){
     int i;
 
@@ -33,4 +34,5 @@ bool CalcAllPermutation(char* perm, int num){
     reverse(perm + i + 1, perm + num);
     return true;
 }
+```
 然后在主函数里循环判断和调用calcAllPermutation函数输出全排列即可。
